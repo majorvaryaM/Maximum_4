@@ -1,5 +1,5 @@
 # Определитель палиндромов
-
+# сравнение двух строк: входной и перевернутой срезом с шагом минус 1
 str_1 = input ('Введите фразу без пробелов с маленькой буквы: ')
 def Palindrom_finder(str_1):
     str_2 = str_1[::-1]
@@ -8,4 +8,4 @@ def Palindrom_finder(str_1):
     else: 
         return  False
     
-print (Palindrom_finder(str_1))
+print (Palindrom_finder(str_1)) 
