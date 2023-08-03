@@ -23,8 +23,13 @@ class Advertisement(models.Model):
     # создаем дату обновления объявления
     # auto_now=True - получаем дату в момент обновления объявления
     update_time = models.DateTimeField(auto_now=True)
+    # называем таблицу
     class Meta:
         db_table = 'advertisements'
+    # создаем функцию для вызова значений
+    def __str__(self):
+	    return f"id={self.id}, title={self.title}, price={self.price}"
+    
 
 class Person(models.Model):
     name = models.CharField(max_length=20)
