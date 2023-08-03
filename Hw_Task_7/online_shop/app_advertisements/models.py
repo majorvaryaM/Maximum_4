@@ -29,9 +29,3 @@ class Advertisement(models.Model):
     # создаем функцию для вызова значений
     def __str__(self):
 	    return f"id={self.id}, title={self.title}, price={self.price}"
-    
-
-class Person(models.Model):
-    name = models.CharField(max_length=20)
-    age = models.IntegerField()
-
