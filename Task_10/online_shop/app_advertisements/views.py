@@ -26,9 +26,7 @@ def advertisement_post (request):
         form = AdvertisementForm (request.POST, request.FILES)
         # проверка на валидность объекта форм
         if form.is_valid():
-            advertisement = Advertisement(**form.cleaned_data)
-            advertisement.user = request.user
-            advertisement.save()
+            form.save()
             url = reverse('main-page')
             return redirect(url)
     else:

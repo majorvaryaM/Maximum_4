@@ -1,13 +1,14 @@
 from django import forms
+from .models import *
 
-class AdvertisementForm (forms.Form):
-    # задаем поле для названия
-    title = forms.CharField(max_length=64, widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
-    # задаем поле для описания
-    discription = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control form-control-lg'}))
-    # задаем поле для цены
-    price = forms.DecimalField (widget=forms.NumberInput(attrs={'class': 'form-control form-control-lg'}))
-    # задаем поле для торга
-    auction = forms.BooleanField (widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}), required=False)
-    # задаем поле для изображения
-    image = forms.ImageField (widget=forms.FileInput(attrs={'class': 'form-control form-control-lg'}))
+class AdvertisementForm (forms.ModelForm):
+    class Meta:
+        model = Advertisement
+        fields = ['title', 'description', 'price', 'auction', 'image', 'user']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
+            'description': forms.Textarea(attrs={'class': 'form-control form-control-lg'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control form-control-lg'}),
+            'auction': forms.CheckboxInput(attrs={'class': 'form-check-input'}), 
+            'image': forms.FileInput(attrs={'class': 'form-control form-control-lg'})                  
+        }
