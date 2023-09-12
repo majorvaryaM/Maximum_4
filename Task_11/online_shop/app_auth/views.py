@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-
 # Create your views here.
 
 @login_required(login_url=reverse_lazy('login'))
@@ -19,15 +18,14 @@ def login_view(request):
         if request.user.is_authenticated:
             return redirect(redirect_url)
         else:
-            return render(request, 'app_auth/login.html')
-        
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    user = authenticate(request, username, password)
+            return render(request, 'app_auth/login.html')      
+    username = request.POST.get('username','')
+    password = request.POST.get('password','')
+    user = authenticate(request)
     # проверка что нашлась комбинация логина и пароля
     if user is not None:
         login(request, user)
-        return redirect(redirect_url)
+        return redirect('/')
     # комбинация не нашлась - пользователь не найден
     return render(request,'app_auth/login.html', {'error': 'Пользователь не найден'})
 

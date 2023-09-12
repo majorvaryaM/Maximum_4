@@ -19,6 +19,16 @@
     <a class="nav-link" href=" {% url 'advertisement-post' %}"><span style="font-weight: bold;">Разместить объявление</span>
     </a>
   </li>
+  {% if user.is_authenticated %}
+  <li class="nav-item">
+    <a class="nav-link" href=" {% url 'profile' %}"><span style="font-weight: bold;">Профиль</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}"><span style="font-weight: bold;">Выйти</span>
+    </a>
+  </li>
+  {% else %}
   <li class="nav-item">
     <a class="nav-link" href=" {% url 'register' %}"><span style="font-weight: bold;">Регистрация</span>
     </a>
@@ -27,15 +37,7 @@
     <a class="nav-link active" href=" {% url 'login' %}"><span style="font-weight: bold;">Войти</span>
     </a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href=" {% url 'profile' %}"><span style="font-weight: bold;">Профиль</span>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'logout' %}">
-      <span style="font-weight: bold;">Выйти</span>
-    </a>
-  </li>
+  {% endif %}
 </ul>
 <div class="container">
 <div class="row">
@@ -51,8 +53,8 @@
   <div class="col-sm-4 offset-4 w-25">
     <div class="form-label bg-warning" style="margin: 10px 0px;"> {{error}}</div>
 </div>
-{% endif %}
-  <form method="post"> {% csrf_token %}
+  {% endif %}
+  <form action=". " method="post"> {% csrf_token %}
     <div class="row mb-3">
       <div class="col">
         <label class="col-sm-4 col-form-label offset-4">Имя пользователя</label>
