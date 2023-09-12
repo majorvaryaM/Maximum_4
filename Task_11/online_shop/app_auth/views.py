@@ -19,9 +19,9 @@ def login_view(request):
             return redirect(redirect_url)
         else:
             return render(request, 'app_auth/login.html')      
-    username = request.POST.get('username','')
-    password = request.POST.get('password','')
-    user = authenticate(request)
+    username = request.POST.get('username')
+    password = request.POST.get('password')    
+    user = authenticate(request, username=username, password=password)
     # проверка что нашлась комбинация логина и пароля
     if user is not None:
         login(request, user)
